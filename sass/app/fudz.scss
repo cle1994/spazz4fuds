@@ -1,28 +1,51 @@
 .fudz-container {
   .game {
-    width: 200px;
-    height: 200px;
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
     border: 1px solid #777777;
+    text-align: center;
+    position: relative;
+
     .penguin {
+      text-align: center;
+      top: 50%;
+      -webkit-transform: translateY(130%);
+      -moz-transform: translateY(50%);
+      -o-transform: translateY(50%);
+      transform: translateY(130%);
 
+      .toggle {
+        height: 100px;
+      }
     }
-    .fish {
 
-      .top {
+    .choice {
+      height: 40px;
+    }
 
-      }
+    .quadrant {
+      position: absolute;
+    }
 
-      .bottom {
+    .top {
+      top: 5px;
+      right: 40%;
+    }
 
-      }
+    .bottom {
+      bottom: 5px;
+      right: 40%;
+    }
 
-      .left {
+    .left {
+      left: 5px;
+      top: 40%;
+    }
 
-      }
-
-      .right {
-
-      }
+    .right {
+      right: 5px;
+      top: 40%;
     }
   }
 }

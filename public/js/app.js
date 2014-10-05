@@ -13,4 +13,13 @@ app.config(["$stateProvider", "$urlRouterProvider", "$locationProvider", functio
       url: '/',
       templateUrl: 'views/home.html'
     })
+    .state('room', {
+      url: '/fudz',
+      templateUrl: 'views/room.html',
+      abstract: true
+    })
+      .state('room.fudz', {
+        url: '/:fudz_id',
+        templateUrl: 'views/fudz.html'
+      });
 }]);

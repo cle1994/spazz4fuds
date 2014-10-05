@@ -7,8 +7,8 @@ var app = express();
 var ordrin = require("ordrin-api");
 var ordrin_api = new ordrin.APIs('Igb2NGzGm6tjaTfLiFaemFfVe7Yy1hhgHCOlV-DBuLk', ordrin.TEST);
 
-// var port = process.env.PORT || 8888;
-var port = 8888;
+var port = process.env.PORT || 8888;
+// var port = 8888;
 var sio = require('socket.io').listen(app.listen(port));
 
 // config ------------

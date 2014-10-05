@@ -45,7 +45,7 @@ sio.sockets.on('connection', function(socket) {
         var max = 0;
         var node = '';
 
-        for (count.has(dir)) {
+        for (dir in count) {
             var temp = max;
             max = Math.max(count[dir], max);
             if (temp != max) {

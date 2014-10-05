@@ -1,32 +1,57 @@
 <div class="fudz-container" data-ng-controller="FudzController">
-  {{ move }}
-  <div data-ng-click="moveleft()">Left</div>
-  <div data-ng-click="moveright()">Right</div>
-  <div data-ng-click="moveup()">Up</div>
-  <div data-ng-click="movedown()">Down</div>
+  <div class="start" data-ng-hide="addrEntered">
+    <div class="inputs">
+      <input class="address" type="text" data-ng-model="street" placeholder="street">
+      <input class="address" type="text" data-ng-model="city" placeholder="city">
+      <input class="address" type="text" data-ng-model="zip" placeholder="zip code">
+    </div>
+    <div class="button" data-ng-click="postAddress()">Get Started</div>
+    <div class="share">
+      <div class="help">
+        Copy and share the link below
+      </div>
+      <input type="text" class="link" data-ng-model="sharelink" data-ng-click="onTextClick($event)">
+    </div>
+  </div>
 
-  <div class="game">
-    <div class="penguin">
+  <div class="game-wrapper" data-ng-show="addrEntered">
+    <div class="game">
+      <div id="penguin" class="penguin" data-ng-style="penguinstyle">
         <img class="toggle" src="./img/penguin.png">
+      </div>
+      <div class="fish left">
+        <img class="choice" src="./img/fish.png">
+        <div class"choice-text">
+      </div>
+    
+      <div class="fish top">
+        <img class="choice" src="./img/fish.png">
+        <div class"choice-text">
+      </div>
+
+      <div class="fish right">
+        <img class="choice" src="./img/fish.png">
+        <div class"choice-text">
+      </div>
+
+      <div class="fish bottom">
+        <img class="choice" src="./img/fish.png">
+        <div class"choice-text">
+      </div>
     </div>
 
-    <div class="quadrant left">
-        <img class="choice" src="./img/fish.png">
-        <div class"choice-text"></div>
-    </div>
-    <div class="quadrant top">
-        <img class="choice" src="./img/fish.png">
-        <div class"choice-text"></div>
-    </div>
-    <div class="quadrant right">
-        <img class="choice" src="./img/fish.png">
-        <div class"choice-text"></div>
-    </div>
-    <div class="quadrant bottom">
-        <img class="choice" src="./img/fish.png">
-        <div class"choice-text"></div>
-    </div>
-</div>
+    <div>{{ move.rest1.na }}</div>
+    <br><br>
+    <div>{{ move.rest2.na }}</div>
+    <br><br>
+    <div>{{ move.rest3.na }}</div>
+    <br><br>
+    <div>{{ move.rest4.na }}</div>
+    <br><br>
 
+    <div data-ng-click="moveleft()">Left</div>
+    <div data-ng-click="moveright()">Right</div>
+    <div data-ng-click="moveup()">Up</div>
+    <div data-ng-click="movedown()">Down</div>
   </div>
 </div>

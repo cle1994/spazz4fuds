@@ -1,4 +1,80 @@
 .fudz-container {
+  height: 100%;
+
+  .start {
+    text-align: center;
+    padding-top: 80px;
+
+    .inputs {
+      text-align: center;
+      margin-bottom: 30px;
+
+      input.address {
+        display: block;
+        padding: 10px 10px;
+        margin: 0 auto;
+        margin-bottom: 30px;
+        width: 100%;
+        max-width: 400px;
+        border: 1px solid #777777;
+        outline: none;
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+        @include font-size(10);
+        color: #777777;
+        font-weight: 300;
+      }
+    }
+
+    .button {
+      display: inline-block;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 10px 20px;
+      border: 1px solid #777777;
+      text-align: center;
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      @include font-size(10);
+      color: #777777;
+      font-weight: 300;
+      cursor: pointer;
+
+      -webkit-transition: background-color 0.2s, color 0.2s;
+      -moz-transition: background-color 0.2s, color 0.2s;
+      -o-transition: background-color 0.2s, color 0.2s;
+      transition: background-color 0.2s, color 0.2s;
+
+      &:hover {
+        background-color: #777777;
+        color: #ffffff;
+      }
+    }
+
+    .share {
+      .help {
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+        font-weight: 300;
+        @include font-size(10);
+        color: #777777;
+        margin-bottom: 15px;
+      }
+
+      .link {
+        display: block;
+        padding: 10px 10px;
+        margin: 0 auto;
+        margin-bottom: 30px;
+        width: 100%;
+        border: none;
+        text-align: center;
+        outline: none;
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+        @include font-size(10);
+        color: #777777;
+        font-weight: 300;
+      }
+    }
+  }
+
   .game {
     width: 400px;
     height: 400px;
@@ -8,44 +84,40 @@
     position: relative;
 
     .penguin {
-      text-align: center;
-      top: 50%;
-      -webkit-transform: translateY(130%);
-      -moz-transform: translateY(50%);
-      -o-transform: translateY(50%);
-      transform: translateY(130%);
+      display: inline-block;
+      @include vertical-align();
 
       .toggle {
         height: 100px;
       }
     }
 
-    .choice {
-      height: 40px;
-    }
-
-    .quadrant {
+    .fish {
       position: absolute;
-    }
 
-    .top {
-      top: 5px;
-      right: 40%;
-    }
+      .choice {
+        height: 36px;
+      }
 
-    .bottom {
-      bottom: 5px;
-      right: 40%;
-    }
+      &.left {
+        left: 4px;
+        top: 182px;
+      }
 
-    .left {
-      left: 5px;
-      top: 40%;
-    }
+      &.right {
+        right: 4px;
+        top: 182px;
+      }
 
-    .right {
-      right: 5px;
-      top: 40%;
+      &.top {
+        left: 170px;
+        top: 4px;
+      }
+
+      &.bottom {
+        left: 170px;
+        bottom: 4px;
+      }
     }
   }
 }

@@ -20,17 +20,26 @@ app.get('*', function(req, res) {
 
 var fudz = {};
 
-var count = {u: 0, d: 0, l: 0, r: 0, addr: {}, rest1: 'hello', rest2: 'hello', rest3: 'hello', rest4: 'hello'};
+var count = {u: 0, d: 0, l: 0, r: 0, rest1: 'hello', rest2: 'hello', rest3: 'hello', rest4: 'hello'};
 
-function setRest(address) {
+function setRest(address, sock, room) {
     var args = {
         datetime: 'ASAP',
         addr: address.street,
         city: address.city,
         zip: address.zip
     };
-    ordrin_api.delivery_list(args, function(data) {
+    ordrin_api.delivery_list(args, function(error, data) {
         console.log(data);
+        var select = [];
+        for (var i = 0; i < 4; i += 1) {
+            select.push(data[Math.floor(Math.random() * 62)]);
+        }
+        fudz[room]['rest1'] = select[0];
+        fudz[room]['rest2'] = select[1];
+        fudz[room]['rest3'] = select[2];
+        fudz[room]['rest4'] = select[3];
+        sock.in(room).emit('join data', fudz[room]);
     })
 };
 
@@ -45,11 +54,10 @@ sio.sockets.on('connection', function(socket) {
     })
     socket.on('move', function(data) {
         fudz[data.room][data.move[0]] += 1;
-        sio.sockets.in(data.room).emit('move', data);
+        sio.sockets.in(data.room).emit('move', fudz[data.room]);
     })
     socket.on('address', function(data) {
-        fudz[data.room][addr] = data.addr;
-        setRest(data.addr);
+        setRest(data.addr, sio.sockets, data.room);
     })
 });
 

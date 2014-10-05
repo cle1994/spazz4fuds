@@ -75,48 +75,64 @@
     }
   }
 
-  .game {
-    width: 400px;
-    height: 400px;
-    margin: 0 auto;
-    border: 1px solid #777777;
-    text-align: center;
-    position: relative;
+  .game-wrapper {
+    padding-top: 60px;
 
-    .penguin {
-      display: inline-block;
-      @include vertical-align();
+    .game {
+      width: 400px;
+      height: 400px;
+      margin: 0 auto;
+      border: 1px dashed #aaaaaa;
+      text-align: center;
+      position: relative;
 
-      .toggle {
-        height: 100px;
-      }
-    }
+      .penguin {
+        display: inline-block;
+        @include vertical-align();
 
-    .fish {
-      position: absolute;
-
-      .choice {
-        height: 36px;
+        .toggle {
+          height: 100px;
+        }
       }
 
-      &.left {
-        left: 4px;
+      .fish.left {
+        position: absolute;
         top: 182px;
+        left: -100px;
+
+        img {
+          height: 40px;
+        }
       }
 
-      &.right {
-        right: 4px;
+      .fish.right {
+        position: absolute;
         top: 182px;
+        right: -100px;
+
+        img {
+          height: 40px;
+        }
       }
 
-      &.top {
-        left: 170px;
-        top: 4px;
+      .fish.top {
+        position: absolute;
+        top: -46px;
+        left: 160px;
+
+        img {
+          height: 40px;
+        }
       }
 
-      &.bottom {
-        left: 170px;
-        bottom: 4px;
+      .fish.bottom {
+        position: absolute;
+        bottom: -46px;
+        left: 160px;
+
+        img {
+          height: 40px;
+        }
       }
     }
   }

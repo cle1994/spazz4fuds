@@ -1,0 +1,190 @@
+.navbar {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  @include span(1);
+  height: 54px;
+  background: #ffffff;
+  @include box-shadow(0px, 2px, 6px, #dddddd, false);
+  opacity: 0;
+
+  @media (max-width: 639px) {
+    overflow: hidden;
+  }
+
+  -webkit-transition: opacity 0.1s, height 0.3s;
+  -moz-transition: opacity 0.1s, height 0.3s;
+  -o-transition: opacity 0.1s, height 0.3s;
+  transition: opacity 0.1s, height 0.3s;
+
+  .logo {
+    @include abs-pos(7px, auto, auto, 14px);
+    height: 40px;
+    opacity: 0;
+    -webkit-transition: opacity 0.2s, margin 0.4s;
+    -moz-transition: opacity 0.2s, margin 0.4s;
+    -o-transition: opacity 0.2s, margin 0.4s;
+    transition: opacity 0.2s, margin 0.4s;
+
+    @media (max-width: 639px) {
+      @include abs-pos(7px, auto, auto, 18px);
+    }
+  }
+
+  .name {
+    opacity: 0;
+    -webkit-transition: opacity 0.2s, margin 0.25s;
+    -moz-transition: opacity 0.2s, margin 0.25s;
+    -o-transition: opacity 0.2s, margin 0.25s;
+    transition: opacity 0.2s, margin 0.25s;
+
+    @media (max-width: 639px) {
+      opacity: 1;
+      line-height: 54px;
+      @include abs-pos(0px, auto, auto, 74px);
+      @include font-size(12);
+      display: inline-block;
+      font-family: 'Roboto Slab', Helvetica, Arial, sans-serif;
+      font-weight: 300;
+      color: #aaaaaa;
+    }
+  }
+
+  .hamburger {
+    @include abs-pos(0px, 10px, auto, auto);
+    @include font-size(8);
+    display: inline-block;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    font-weight: 100;
+    line-height: 54px;
+    letter-spacing: 5px;
+    cursor: pointer;
+    color: #aaaaaa;
+    display: none;
+
+    @media (max-width: 639px) {
+      display: block;
+    }
+  }
+
+  ul {
+    @include vertical-align;
+    top: 20%;
+    margin-left: 80px;
+
+    @media (max-width: 639px) {
+      top: 0;
+      -webkit-transform: translateY(0%);
+      -moz-transform: translateY(0%);
+      -o-transform: translateY(0%);
+      transform: translateY(0%);
+      -webkit-transition: margin 0.3s;
+      -moz-transition: margin 0.3s;
+      -o-transition: margin 0.3s;
+      transition: margin 0.3s;
+      margin-top: 100px;
+      margin-left: 16px;
+    }
+
+    li {
+      @include font-size(8);
+      display: inline-block;
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      font-weight: 300;
+      margin-right: 24px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      padding-left: 2px;
+      padding-right: 2px;
+      text-transform: uppercase;
+      color: #aaaaaa;
+      border-bottom: 1px solid transparent;
+      opacity: 0;
+
+      @media (max-width: 639px) {
+        display: block;
+        line-height: 30px;
+        padding: 0px;
+        padding-top: 12px;
+      }
+
+      .space-letters {
+        letter-spacing: 6px;
+      }
+
+      &.last {
+        @media (max-width: 639px) {
+          margin-bottom: 20px;
+        }
+      }
+
+      -webkit-transition: color 0.25s, border 0.25s, opacity 0.25s;
+      -moz-transition: color 0.25s, border 0.25s, opacity 0.25s;
+      -o-transition: color 0.25s, border 0.25s, opacity 0.25s;
+      transition: color 0.25s, border 0.25s, opacity 0.25s;
+
+      &.active {
+        color: #777777;
+        border-bottom: 1px solid #777777;
+      }
+
+      &:hover {
+        color: #777777;
+        border-bottom: 1px solid #777777;
+      }
+    }
+  }
+
+  &.showMenu {
+    opacity: 1;
+
+    .logo {
+      opacity: 1;
+      cursor: pointer;
+    }
+    ul {
+      li {
+        opacity: 1;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &.showNotHome {
+    opacity: 1;
+
+    .logo {
+      opacity: 1;
+      cursor: pointer;
+    }
+
+    ul {
+      li {
+        opacity: 1;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &.expand {
+    @media (max-width: 639px) {
+      height: 240px;
+
+      ul {
+        margin-top: 34px;
+      }
+
+      .logo {
+        margin-top: -54px;
+        opacity: 0;
+        cursor: default;
+      }
+
+      .name {
+        margin-top: -54px;
+        opacity: 0;
+      }
+    }
+  }
+}

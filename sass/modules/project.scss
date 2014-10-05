@@ -1,0 +1,10 @@
+.work-piece {
+  @include col(10/12, 1/12);
+  height: 500px;
+  background: #cccccc;
+
+  @media (max-width: 979px) {
+    @include col(1);
+    margin-top: 0px;
+  }
+}

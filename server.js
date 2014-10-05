@@ -1,6 +1,7 @@
 // server.js
 
 // modules -----------
+var path = require('path');
 var express = require('express');
 var app = express();
 
@@ -12,7 +13,7 @@ var sio = require('socket.io').listen(app.listen(port));
 app.use(express.static(__dirname + '/public'));
 
 app.get('*', function(req, res) {
-  res.sendFile('./public/index.html');
+    res.sendFile(path.join(__dirname, '/public', 'index.html'));
 });
 
 var fudz = {};

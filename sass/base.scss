@@ -12,13 +12,17 @@
 }
 
 html, body {
-  background: #ffffff;
+  height: 100%;
+}
+
+.main-container {
+  height: 100%;
 }
 
 .cf {
   @include cf();
 }
 
-.main-content-container {
-  padding-top: 54px;
+.vert-align {
+  @include vertical-align;
 }

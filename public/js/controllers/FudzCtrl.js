@@ -13,9 +13,24 @@ app.controller('FudzController', ['$scope', '$location', '$window', 'SocketServi
     var mtop = 50 - $scope.move.u + $scope.move.d;
     console.log(mtop);
     var mright = ($scope.move.r - $scope.move.l) * 2;
+    console.log('mright' + mright)
     $scope.penguinstyle = {
       'top': mtop + '%',
       'margin-left': mright + '%'
+    }
+
+    if (mtop == 11) {
+      console.log('top reached');
+      SocketService.emit('finish', {winner: $scope.move.rest1})
+    } else if (mtop == 90) {
+      console.log('bottom reached');
+      SocketService.emit('finish', {winner: $scope.move.rest3})
+    } else if (mright == -88) {
+      console.log('left reached');
+      SocketService.emit('finish', {winner: $scope.move.rest4})
+    } else if (mright == 82) {
+      console.log('right reached');
+      SocketService.emit('finish', {winner: $scope.move.rest2})
     }
   }
 
@@ -35,6 +50,7 @@ app.controller('FudzController', ['$scope', '$location', '$window', 'SocketServi
     $scope.addrEntered = true;
     $scope.calculatePenguin();
   });
+
 
   $scope.postAddress = function() {
     SocketService.emit('address', {room: roomURL, addr: {street: $scope.street, city: $scope.city, zip: $scope.zip}});

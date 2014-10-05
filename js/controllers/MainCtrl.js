@@ -1,0 +1,1 @@
+spazz.controller('MainController', ['$scope', function($scope) {}]);

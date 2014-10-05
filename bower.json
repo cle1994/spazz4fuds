@@ -1,0 +1,9 @@
+{
+  "name": "ChristianLe",
+  "version": "1.0.0",
+  "dependencies": {
+    "angular": "latest",
+    "angular-touch": "latest",
+    "angular-route": "latest"
+  }
+}

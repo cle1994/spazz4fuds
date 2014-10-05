@@ -1,27 +1,24 @@
 // Base
 
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
+@import url("http://fonts.googleapis.com/css?family=Roboto:400,300,100");
+@import url("http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,100");
 
 *,
 *:after,
 *:before {
   @include box-sizing(border-box);
-  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-  font-weight: light;
-  color: #777777;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-weight: 300;
 }
 
 html, body {
-  height: 100%;
-  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-  font-weight: light;
-  color: #777777;
+  background: #ffffff;
 }
 
 .cf {
   @include cf();
 }
 
-.vert-center {
-  @include vertical-align;
+.main-content-container {
+  padding-top: 54px;
 }

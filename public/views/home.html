@@ -1,3 +1,50 @@
-<div class="home" data-ng-controller="">
-  Home Bitches
+<div class="home-header" scroll data-ng-class="{ nobox:changeScroll }">
+  <div class="header">
+    <h1>Christian Le</h1>
+    <p>Developer / Designer / Technology Enthusiast</p>
+  </div>
+</div>
+<div class="home-container" data-ng-controller="BlogController">
+  <div class="profile-card" ui-sref="about">
+    <div class="tag">
+      About Me
+    </div>
+  </div>
+  <div class="work">
+    Recent Work
+    <div class="card" ui-sref="work.innod">
+      <div class="tag">
+        <p class="project">
+          Innovative Design
+        </p>
+        <p class="type">
+          Web
+        </p>
+      </div>
+      <div class="image"></div>
+    </div>
+    <p class="more" ui-sref="work">more...</p>
+  </div>
+  <div class="blog">
+    Latest Blog Posts
+    <a href="https://medium.com/@christianle/why-i-redesigned-my-website-99b977a0bf72?source=latest&amp;" target="_blank">
+      <div class="card" >
+        <img src="../img/icon/medium.png">
+        <div class="content">
+          <div class="title">Why I Redesigned My Website</div>
+          <div class="subtitle">I realized I changed</div>
+          <div class="date">September 22nd, 2014</div>
+        </div>
+      </div>
+    </a>
+    <div class="card" ui-sref="blog.angdatabind">
+      <img src="../img/icon/snippets.png">
+      <div class="content">
+        <div class="title">Angular Data Binding</div>
+        <div class="subtitle">What does data binding in Angular.js do?</div>
+        <div class="date">September 15th, 2014</div>
+      </div>
+    </div>
+    <p class="more" ui-sref="blog">more...</p>
+  </div>
 </div>

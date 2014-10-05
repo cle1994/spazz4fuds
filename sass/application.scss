@@ -5,6 +5,8 @@
 //// Vendor specific files
 // Jeet
 @import "vendors/jeet/index";
+// Prism
+@import "vendors/prism/prism";
 
 //// Variables and Mixins
 @import "mixins";
@@ -14,7 +16,13 @@
 @import "base";
 
 //// Modules
-@import "modules/nav";
+@import "modules/navbar";
+@import "modules/project";
+@import "modules/snippet";
+@import "modules/pieces";
 
 //// App
 @import "app/home";
+@import "app/work";
+@import "app/blog";
+@import "app/about";

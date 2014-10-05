@@ -14,6 +14,10 @@ app.controller('FudzController', ['$scope', '$location', '$window', 'SocketServi
     $scope.move = data;
   });
 
+  $scope.postAddress = function() {
+    SocketService.emit('address', {room: roomURL, addr: {addr: $scope.street, city: $scope.city, zip: $scope.zip}});
+  }
+
   $scope.moveleft = function() {
     console.log($scope.move);
     SocketService.emit('move', {room: roomURL, move: 'l'});

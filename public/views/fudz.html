@@ -3,7 +3,9 @@
     <div class="inputs">
       <input class="address" type="text" data-ng-model="street" placeholder="street">
       <input class="address" type="text" data-ng-model="city" placeholder="city">
+      <input class="address" type="text" data-ng-model="state" placeholder="state">
       <input class="address" type="text" data-ng-model="zip" placeholder="zip code">
+      <input class="address" type="text" data-ng-model="number" placeholder="phone number">
     </div>
     <div class="button" data-ng-click="postAddress()">Get Started</div>
     <div class="share">
@@ -14,7 +16,7 @@
     </div>
   </div>
 
-  <div class="game-wrapper" data-ng-show="addrEntered">
+  <div class="game-wrapper" data-ng-show="gameshow">
     <div class="game">
       <div id="penguin" class="penguin" data-ng-style="penguinstyle">
         <img class="toggle" src="./img/penguin.png">
@@ -22,30 +24,58 @@
 
       <div class="fish left">
         <img src="./img/fish.png" alt="">
+        <div class="title">
+          1
+        </div>
       </div>
       <div class="fish top">
         <img src="./img/fish.png" alt="">
+        <div class="title">
+          2
+        </div>
       </div>
       <div class="fish right">
         <img src="./img/fish.png" alt="">
+        <div class="title">
+          3
+        </div>
       </div>
       <div class="fish bottom">
         <img src="./img/fish.png" alt="">
+        <div class="title">
+          4
+        </div>
       </div>
     </div>
+  </div>
 
-    <div>{{ move.rest1.na }}</div>
-    <br><br>
-    <div>{{ move.rest2.na }}</div>
-    <br><br>
-    <div>{{ move.rest3.na }}</div>
-    <br><br>
-    <div>{{ move.rest4.na }}</div>
-    <br><br>
+  <div class="controller" data-ng-show="gameshow">
+    <div class="dir left" data-ng-click="moveleft()">Left</div>
+    <div class="dir right" data-ng-click="moveright()">Right</div>
+    <div class="dir up" data-ng-click="moveup()">Up</div>
+    <div class="dir down" data-ng-click="movedown()">Down</div>
+  </div>
 
-    <div data-ng-click="moveleft()">Left</div>
-    <div data-ng-click="moveright()">Right</div>
-    <div data-ng-click="moveup()">Up</div>
-    <div data-ng-click="movedown()">Down</div>
+  <div class="legend" data-ng-show="gameshow">
+    <div class="each">
+      <span>1. </span><span>{{ move.rest1.na }}</span>
+    </div>
+    <div class="each">
+      <span>2. </span><span>{{ move.rest2.na }}</span>
+    </div>
+    <div class="each">
+      <span>3. </span><span>{{ move.rest3.na }}</span>
+    </div>
+    <div class="each">
+      <span>4. </span><span>{{ move.rest4.na }}</span>
+    </div>
+  </div>
+
+  <div class="game-wrapper" data-ng-show="win">
+    <div class="hidden" data-ng-show="win">
+      {{ restaurantWin }}
+    </div>
+    <div class="ordrin-embed" data-rid="{{ restaurantWin.id }}" data-target="web|mobile" data-width="100%" data-height="90%" data-servers="test" data-pubKey="oBI7aGCOEeVoa8Kb9lb-a3rVzXwQ4eAXmK70qi_5g6k" data-addr="{{ restaurantWin.street }}" data-city="{{ restaurantWin.city }}" data-state="{{ restaurantWin.state }}" data-zip="{{ restaurantWin.zip }}" data-phone="{{ restaurantWin.number }}"></div>
+    }
   </div>
 </div>

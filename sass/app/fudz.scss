@@ -75,6 +75,75 @@
     }
   }
 
+  .legend {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    border: 1px solid #aaaaaa;
+    padding: 5px 10px;
+    background-color: rgba(255, 255, 255, 0.4);
+
+    .each {
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      font-weight: 300;
+      @include line-height(14);
+      @include font-size(8);
+      color: #777777;
+    }
+  }
+
+  .controller {
+    position: fixed;
+    height: 150px;
+    width: 150px;
+    bottom: 10px;
+    right: 10px;
+    border: 1px solid #aaaaaa;
+    padding: 5px 10px;
+    background-color: rgba(255, 255, 255, 0.4);
+
+    .dir.up {
+      position: absolute;
+      top: 4px;
+      left: 60px;
+      cursor: pointer;
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      font-weight: 300;
+      @include font-size(8);
+      color: #777777;
+    }
+    .dir.down {
+      position: absolute;
+      bottom: 4px;
+      left: 55px;
+      cursor: pointer;
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      font-weight: 300;
+      @include font-size(8);
+      color: #777777;
+    }
+    .dir.left {
+      position: absolute;
+      left: 4px;
+      top: 65px;
+      cursor: pointer;
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      font-weight: 300;
+      @include font-size(8);
+      color: #777777;
+    }
+    .dir.right {
+      position: absolute;
+      right: 4px;
+      top: 65px;
+      cursor: pointer;
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      font-weight: 300;
+      @include font-size(8);
+      color: #777777;
+    }
+  }
+
   .game-wrapper {
     padding-top: 60px;
 
@@ -103,6 +172,15 @@
         img {
           height: 40px;
         }
+
+        .title {
+          margin-top: -30px;
+          margin-left: -15px;
+          font-family: 'Roboto', Helvetica, Arial, sans-serif;
+          font-weight: 300;
+          @include font-size(8);
+          color: #ffffff;
+        }
       }
 
       .fish.right {
@@ -112,6 +190,15 @@
 
         img {
           height: 40px;
+        }
+
+        .title {
+          margin-top: -30px;
+          margin-left: -15px;
+          font-family: 'Roboto', Helvetica, Arial, sans-serif;
+          font-weight: 300;
+          @include font-size(8);
+          color: #ffffff;
         }
       }
 
@@ -123,6 +210,15 @@
         img {
           height: 40px;
         }
+
+        .title {
+          margin-top: -30px;
+          margin-left: -15px;
+          font-family: 'Roboto', Helvetica, Arial, sans-serif;
+          font-weight: 300;
+          @include font-size(8);
+          color: #ffffff;
+        }
       }
 
       .fish.bottom {
@@ -133,7 +229,20 @@
         img {
           height: 40px;
         }
+
+        .title {
+          margin-top: -30px;
+          margin-left: -15px;
+          font-family: 'Roboto', Helvetica, Arial, sans-serif;
+          font-weight: 300;
+          @include font-size(8);
+          color: #ffffff;
+        }
       }
     }
+  }
+
+  .hidden {
+    opacity: 0;
   }
 }

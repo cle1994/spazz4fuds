@@ -59,6 +59,9 @@ sio.sockets.on('connection', function(socket) {
     socket.on('address', function(data) {
         setRest(data.addr, sio.sockets, data.room);
     })
+    socket.on('destroy', function(data) {
+        delete fudz[data.room];
+    })
 });
 
 console.log('Magic happens on port ' + port);

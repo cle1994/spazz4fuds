@@ -17,54 +17,22 @@ app.get('*', function(req, res) {
 });
 
 var fudz = {};
-var keys = {
-    right: 0,
-    left: 1,
-    up: 2,
-    down: 3
-};
 
 var count = {u: 0, d: 0, l: 0, r: 0};
 
 sio.sockets.on('connection', function(socket) {
     socket.on('join', function(data) {
         socket.join(data.room);
-        socket.set('room', data.room);
-        socket.emit('position', fudz[data.room][pos]);
-    });
-
-    socket.on('move', function(key) {
-        if (key == up) {
-            count.u += 1;
-        } else if (key == down) {
-            count.d += 1;
-        } else if (key == right) {
-            count.r += 1;
-        } else if (key == left) {
-            count.l += 1;
+        if (data.room in fudz) {
+            sio.sockets.in(data.room).emit('join data', fudz[data.room]);
+        } else {
+            fudz[data.room] = count;
         }
-        var max = 0;
-        var node = '';
-
-        for (dir in count) {
-            var temp = max;
-            max = Math.max(count[dir], max);
-            if (temp != max) {
-                node = dir;
-            }
-        }
-        socket.emit('move', node);
-    });
-
-    socket.on('disconnect', function() {
-        console.log('Disconnected');
-        socket.get('room', function(err, room) {
-            sio.sockets.in(room).emit('leave');
-            if (fudz.has(room)) {
-                fudz.delete(room);
-            }
-        });
-    });
+    })
+    socket.on('move', function(data) {
+        fudz[data.room][data.move[0]] += 1;
+        sio.sockets.in(data.room).emit('move', data);
+    })
 });
 
 console.log('Magic happens on port ' + port);

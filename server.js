@@ -34,20 +34,20 @@ sio.sockets.on('connection', function(socket) {
 
     socket.on('move', function(key) {
         if (key == up) {
-            count.u++
+            count.u += 1;
         } else if (key == down) {
-            count.d++;
+            count.d += 1;
         } else if (key == right) {
-            count.r++;
+            count.r += 1;
         } else if (key == left) {
-            count.l++;
+            count.l += 1;
         }
-        val max = 0;
-        val node = '';
+        var max = 0;
+        var node = '';
 
-        for (dir in count) {
+        for (count.has(dir)) {
             var temp = max;
-            max = Math.max(count.dir.value, max);
+            max = Math.max(count[dir], max);
             if (temp != max) {
                 node = dir;
             }
@@ -59,8 +59,8 @@ sio.sockets.on('connection', function(socket) {
         console.log('Disconnected');
         socket.get('room', function(err, room) {
             sio.sockets.in(room).emit('leave');
-            if (room in fudz) {
-                del fudz.room;
+            if (fudz.has(room)) {
+                fudz.delete(room);
             }
         });
     });

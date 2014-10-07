@@ -20,8 +20,6 @@ app.get('*', function(req, res) {
 
 var fudz = {};
 
-var count = {u: 0, d: 0, l: 0, r: 0, rest1: 'hello', rest2: 'hello', rest3: 'hello', rest4: 'hello'};
-
 function setRest(address, sock, room) {
     var args = {
         datetime: 'ASAP',
@@ -30,16 +28,12 @@ function setRest(address, sock, room) {
         zip: address.zip
     };
     ordrin_api.delivery_list(args, function(error, data) {
-        console.log(data);
         var select = [];
         for (var i = 0; i < 4; i += 1) {
             select.push(data[Math.floor(Math.random() * 62)]);
         }
-        fudz[room]['rest1'] = select[0];
-        fudz[room]['rest2'] = select[1];
-        fudz[room]['rest3'] = select[2];
-        fudz[room]['rest4'] = select[3];
-        sock.in(room).emit('join data', fudz[room]);
+        console.log(select);
+        sock.in(room).emit('restaurant', select);
     })
 };
 
@@ -47,18 +41,28 @@ sio.sockets.on('connection', function(socket) {
     socket.on('join', function(data) {
         socket.join(data.room);
         if (data.room in fudz) {
-            sio.sockets.in(data.room).emit('join data', fudz[data.room]);
+            console.log('joining');
+            socket.to(data.room).emit('joining', data);
         } else {
-            fudz[data.room] = count;
+            console.log('new');
+            fudz[data.room] = 1;
+            sio.sockets.in(data.room).emit('new', fudz[data.room]);
         }
     })
-    socket.on('move', function(data) {
-        fudz[data.room][data.move[0]] += 1;
-        sio.sockets.in(data.room).emit('move', fudz[data.room]);
+
+    socket.on('data', function(data) {
+        console.log(data);
+        sio.sockets.in(data.room).emit('receive', data.data);
     })
+
+    socket.on('move', function(data) {
+        sio.sockets.in(data.room).emit('move', data);
+    })
+
     socket.on('address', function(data) {
         setRest(data.addr, sio.sockets, data.room);
     })
+
     socket.on('destroy', function(data) {
         delete fudz[data.room];
     })

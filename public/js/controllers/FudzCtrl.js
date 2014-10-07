@@ -25,7 +25,15 @@ app.controller('FudzController', ['$scope', '$location', '$window', 'SocketServi
     $scope.win = true;
     $scope.gameshow = false;
     SocketService.emit('destroy', {room: roomURL});
-    $scope.restaurantWin = {id: restaurant.id, street: $scope.address.street, city: $scope.address.city, zip: $scope.address.zip, state: $scope.address.state, number: $scope.address.number};
+    $scope.restaurantWin = {
+      id: restaurant,
+      street: $scope.address.street,
+      city: $scope.address.city,
+      zip: $scope.address.zip,
+      state:$scope.address.state,
+      number: $scope.address.number
+    };
+
     (function(){
       var ow = document.createElement('script');
       ow.type = 'text/javascript'; ow.async = true; ow.src = '//menus.ordr.in/js/widget.js';
@@ -42,14 +50,14 @@ app.controller('FudzController', ['$scope', '$location', '$window', 'SocketServi
       'margin-left': mright + '%'
     }
 
-    if (mtop == 11) {
-      $scope.executeWin($scope.restaurants.rest1);
-    } else if (mtop == 90) {
-      $scope.executeWin($scope.restaurants.rest3);
-    } else if (mright == -88) {
-      $scope.executeWin($scope.restaurants.rest4);
-    } else if (mright == 82) {
-      $scope.executeWin($scope.restaurants.rest2);
+    if (mtop <= 10) {
+      $scope.executeWin($scope.restaurants.rest2.id);
+    } else if (mtop >= 90) {
+      $scope.executeWin($scope.restaurants.rest4.id);
+    } else if (mright <= -86) {
+      $scope.executeWin($scope.restaurants.rest1.id);
+    } else if (mright >= 84) {
+      $scope.executeWin($scope.restaurants.rest3.id);
     }
   }
 
@@ -58,7 +66,6 @@ app.controller('FudzController', ['$scope', '$location', '$window', 'SocketServi
   });
 
   SocketService.on('new', function() {
-    console.log('new')
     $scope.move = {
       u: 0,
       d: 0,
@@ -71,6 +78,8 @@ app.controller('FudzController', ['$scope', '$location', '$window', 'SocketServi
     $scope.addrEntered = true;
     $scope.gameshow = true;
     SocketService.emit('data', { room: roomURL, data: $scope.move });
+    SocketService.emit('updateRest', { room: roomURL, restaurants: $scope.restaurants });
+    SocketService.emit('updateAddr', { room: roomURL, addr: $scope.address });
   });
 
   SocketService.on('receive', function(data) {
@@ -78,6 +87,24 @@ app.controller('FudzController', ['$scope', '$location', '$window', 'SocketServi
     $scope.gameshow = true;
     $scope.move = data;
     $scope.calculatePenguin();
+  });
+
+  SocketService.on('receiveRest', function(data) {
+    $scope.addrEntered = true;
+    $scope.gameshow = true;
+    $scope.restaurants = data;
+  });
+
+  SocketService.on('receiveAddr', function(data) {
+    $scope.addrEntered = true;
+    $scope.gameshow = true;
+    $scope.address = data;
+  });
+
+  SocketService.on('receiveAddr', function(data) {
+    $scope.addrEntered = true;
+    $scope.gameshow = true;
+    $scope.address = data;
   });
 
   SocketService.on('move', function(data) {
@@ -88,10 +115,11 @@ app.controller('FudzController', ['$scope', '$location', '$window', 'SocketServi
   SocketService.on('restaurant', function(data) {
     $scope.restaurants = {
       rest1: data[0],
-      rest1: data[1],
-      rest1: data[2],
-      rest1: data[3]
-    }
+      rest2: data[1],
+      rest3: data[2],
+      rest4: data[3]
+    };
+
   });
 
   $scope.postAddress = function() {

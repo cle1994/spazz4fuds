@@ -32,7 +32,6 @@ function setRest(address, sock, room) {
         for (var i = 0; i < 4; i += 1) {
             select.push(data[Math.floor(Math.random() * 62)]);
         }
-        console.log(select);
         sock.in(room).emit('restaurant', select);
     })
 };
@@ -51,8 +50,15 @@ sio.sockets.on('connection', function(socket) {
     })
 
     socket.on('data', function(data) {
-        console.log(data);
         sio.sockets.in(data.room).emit('receive', data.data);
+    })
+
+    socket.on('updateRest', function(data) {
+        sio.sockets.in(data.room).emit('receiveRest', data.restaurants);
+    })
+
+    socket.on('updateAddr', function(data) {
+        sio.sockets.in(data.room).emit('receiveAddr', data.addr);
     })
 
     socket.on('move', function(data) {

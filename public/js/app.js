@@ -2,6 +2,14 @@ var app = angular.module('spazz4fudz', ['ui.router', 'ngTouch']);
 
 app.run(['$rootScope', '$state', '$location', '$window', function ($rootScope, $state, $location, $window) {
   $rootScope.$state = $state;
+  $rootScope
+    .$on('$stateChangeSuccess', function(event) {
+      if (!$window.ga)
+        return;
+      $window.ga('send', 'pageview', {
+        page: $location.path()
+      });
+    });
 }]);
 
 app.config(["$stateProvider", "$urlRouterProvider", "$locationProvider", function($stateProvider, $urlRouterProvider, $locationProvider) {
